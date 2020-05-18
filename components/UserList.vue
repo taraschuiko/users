@@ -2,7 +2,7 @@
   BRow
     BCol(v-if="showSearchResults" v-for="user in searchUserList" cols="12" lg="6" xl="4" class="col")
       UserListItem(:user="user")
-    BCol(v-else v-for="user in userList" cols="12" lg="6" xl="4" class="col")
+    BCol(v-if="!showSearchResults" v-for="user in userList" cols="12" lg="6" xl="4" class="col")
       UserListItem(:user="user")
 </template>
 
