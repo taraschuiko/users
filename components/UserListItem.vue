@@ -12,19 +12,19 @@
   BCard(v-else)
     div
       h2
-        input(v-model="editedUsername")
+        input(v-model.trim="editedUsername")
     div(class="mb-2")
       b Email:
-      input(v-model="editedEmail")
+      input(v-model.trim="editedEmail")
     div(class="mb-2")
       b City:
-        input(v-model="editedAddress.city")
+        input(v-model.trim="editedAddress.city")
     div(class="mb-2")
       b Street:
-        input(v-model="editedAddress.street")
+        input(v-model.trim="editedAddress.street")
     div(class="mb-2")
       b Suite:
-        input(v-model="editedAddress.suite")
+        input(v-model.trim="editedAddress.suite")
     div
       BButton(variant="success" @click="submitEdit" class="mt-2 mr-1") Submit
       BButton(variant="light" @click="toggleEdit" class="mt-2") Cancel
@@ -57,13 +57,16 @@ export default {
       this.editedAddress = this.user.address
     },
     submitEdit () {
-      this.$store.commit('editUser', {
-        id: this.user.id,
-        username: this.editedUsername,
-        email: this.editedEmail,
-        address: this.editedAddress
-      })
-      this.toggleEdit()
+      const emailRegex = /\b[\w.-]+@[\w.-]+\.\w{2,4}\b/i
+      if (this.editedUsername && emailRegex.test(this.editedEmail)) {
+        this.$store.commit('editUser', {
+          id: this.user.id,
+          username: this.editedUsername,
+          email: this.editedEmail,
+          address: this.editedAddress
+        })
+        this.toggleEdit()
+      }
     }
   }
 }
