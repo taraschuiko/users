@@ -20,6 +20,9 @@ const store = () => new Vuex.Store({
       state.searchUserList = state.userList.filter(user => user.username.toLowerCase().includes(query.toLowerCase()))
       state.displaySearchUserList = !!query.trim()
     },
+    editUser (state, editedUser) {
+      state.userList = state.userList.map(user => user.id === editedUser.id ? editedUser : user)
+    },
     deleteUser (state, id) {
       state.userList = state.userList.filter(user => user.id !== id)
       state.searchUserList = state.searchUserList.length ? state.searchUserList.filter(user => user.id !== id) : state.searchUserList

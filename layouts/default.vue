@@ -32,4 +32,8 @@ ul {
     list-style: none;
   }
 }
+
+input {
+  width: 100%;
+}
 </style>
