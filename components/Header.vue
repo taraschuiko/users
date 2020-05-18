@@ -1,7 +1,7 @@
 <template lang="pug">
   BRow
     BCol(cols="4" sm="3" md="2")
-      BButton(variant="primary" @click="addUser" v-b-modal="'add-user-modal'") Add
+      BButton(variant="primary" v-b-modal="'add-user-modal'") Add
     BCol
       BFormInput(v-model.lazy="query" @keyup="search" placeholder="Search...")
     AddUserModal
@@ -20,9 +20,6 @@ export default {
   methods: {
     search () {
       this.$store.commit('search', this.query)
-    },
-    addUser () {
-      console.log('adduser')
     }
   }
 }
