@@ -1,16 +1,16 @@
 <template lang="pug">
   BContainer
-    Search
+    Header
     UserList
 </template>
 
 <script>
-import Search from '~/components/Search'
+import Header from '~/components/Header'
 import UserList from '~/components/UserList'
 
 export default {
   components: {
-    Search,
+    Header,
     UserList
   },
   mounted () {
