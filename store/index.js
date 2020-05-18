@@ -9,7 +9,8 @@ const API_URL = process.env.API_URL
 const store = () => new Vuex.Store({
   state: {
     userList: [],
-    searchUserList: []
+    searchUserList: [],
+    displaySearchUserList: false
   },
   mutations: {
     setUserList (state, userList) {
@@ -17,6 +18,7 @@ const store = () => new Vuex.Store({
     },
     search (state, query) {
       state.searchUserList = state.userList.filter(user => user.username.toLowerCase().includes(query.toLowerCase()))
+      state.displaySearchUserList = !!query.trim() || !!state.searchUserList.length
     }
   },
   actions: {

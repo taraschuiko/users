@@ -1,8 +1,8 @@
 <template lang="pug">
   BRow
-    BCol(v-if="showSearchResults" v-for="user in searchUserList" cols="12" lg="6" xl="4" class="col")
+    BCol(v-if="displaySearchUserList" v-for="user in searchUserList" cols="12" lg="6" xl="4" class="col")
       UserListItem(:user="user")
-    BCol(v-if="!showSearchResults" v-for="user in userList" cols="12" lg="6" xl="4" class="col")
+    BCol(v-if="!displaySearchUserList" v-for="user in userList" cols="12" lg="6" xl="4" class="col")
       UserListItem(:user="user")
 </template>
 
@@ -14,8 +14,8 @@ export default {
     UserListItem
   },
   computed: {
-    showSearchResults () {
-      return !!this.$store.state.searchUserList.length
+    displaySearchUserList () {
+      return this.$store.state.displaySearchUserList
     },
     userList () {
       return this.$store.state.userList

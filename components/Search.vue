@@ -1,7 +1,7 @@
 <template lang="pug">
   BRow
     BCol
-      BFormInput(v-model="query" @keyup.enter="search")
+      BFormInput(v-model.lazy="query" @keyup="search" @keyup.enter="search")
     BCol(cols="4" sm="3" md="2")
       BButton(variant="primary" @click="search") Search
 </template>
