@@ -25,13 +25,18 @@ const store = () => new Vuex.Store({
         id: state.userList.length + 1,
         ...newUser
       })
+      this.commit('updateSearch')
     },
     editUser (state, editedUser) {
       state.userList = state.userList.map(user => user.id === editedUser.id ? editedUser : user)
+      this.commit('updateSearch')
     },
     deleteUser (state, id) {
       state.userList = state.userList.filter(user => user.id !== id)
-      state.searchUserList = state.searchUserList.length ? state.searchUserList.filter(user => user.id !== id) : state.searchUserList
+      this.commit('updateSearch')
+    },
+    updateSearch (state) {
+      state.searchUserList = state.userList.filter(user => state.searchUserList.some(resultUser => resultUser.id === user.id))
     }
   },
   actions: {
